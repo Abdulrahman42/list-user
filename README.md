@@ -1,69 +1,42 @@
-# React + TypeScript + Vite
+# Coding Test Solution
+🚀 Tech Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Language/Framework: [e.g., TypeScript + React]
 
-Currently, two official plugins are available:
+- Tools: [e.g., Tailwindcss, Material symbols, React select, React router dom]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+📝 Approach
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Understanding the requirements
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  - Reviewed the problem statement and mapped the expected input/output.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+  - Designed a project structure that is easy to read and extend.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Implementation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  - Broke down the solution into smaller functions/components for reusability and clarity.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  - Added validation and error handling where necessary.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  - Focused on clean code practices and consistency.
+
+3. Testing & Verification
+
+  - Ran multiple scenarios (normal cases, edge cases, error handling).
+
+  - Used console logs/unit tests (if required) to verify the results.
+
+
+📌 Assumptions
+
+- The Search by username (real-time) requirement means that as the user types in the search field, the filtering happens instantly without needing to press Enter or click a button.
+
+- Since the API endpoint https://jsonplaceholder.typicode.com/users
+ only provides a single route without support for queries or filters, the search and filtering are handled manually on the client side using the retrieved dataset.
+
+- Since the requirements mention displaying Name, the search will be performed against both username and name fields.
+
+## Website
+[List user](https://placeholder-list-user.netlify.app/)
