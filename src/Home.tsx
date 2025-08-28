@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-
 import useFetch from "./services/useFetch";
 import { useSearchQuery } from "./services/useSearchQuery";
 
@@ -11,20 +9,6 @@ const Home = () => {
   const { value, setValue } = useSearchQuery("q");
 
   const { data, loading, error, city, company } = useFetch();
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-
-  const activeFilters = {
-    city: searchParams.get("city")
-      ? { label: searchParams.get("city")!, value: searchParams.get("city")! }
-      : null,
-    company: searchParams.get("company")
-      ? {
-          label: searchParams.get("company")!,
-          value: searchParams.get("company")!,
-        }
-      : null,
-  };
 
   return (
     <div className="w-full min-h-screen h-auto bg-[#F6F7F8] px-2 flex flex-col items-center py-4">
@@ -37,7 +21,7 @@ const Home = () => {
         companyDropdownOptions={company}
       />
       <div className="flex items-start max-w-[766px] w-full mt-2">
-        <ActiveFilter active={activeFilters} />
+        <ActiveFilter />
       </div>
       {loading && (
         <span className="material-symbols-outlined animate-spin mt-5">

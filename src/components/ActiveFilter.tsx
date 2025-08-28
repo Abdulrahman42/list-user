@@ -2,19 +2,28 @@
 import { useNavigate, useLocation } from "react-router-dom";
 
 type LabeledValue = { label: string; value: string };
-type ActiveFilter = Record<
+type ActiveFilterType = Record<
   string,
   { label: string; value: string } | { label: string; value: string } | null
 >;
 
-
-type ActiveFilterProps = {
-  active: ActiveFilter;
-};
-
-const ActiveFilter = ({active}: ActiveFilterProps) => {
+const ActiveFilter = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
+
+  const active: ActiveFilterType = {
+    city: searchParams.get("city")
+      ? { label: searchParams.get("city")!, value: searchParams.get("city")! }
+      : null,
+    company: searchParams.get("company")
+      ? {
+          label: searchParams.get("company")!,
+          value: searchParams.get("company")!,
+        }
+      : null,
+  };
 
   const handleClearFilter = (key: string, valueToRemove?: string) => {
     const params = new URLSearchParams(location.search);
@@ -39,7 +48,7 @@ const ActiveFilter = ({active}: ActiveFilterProps) => {
     });
   };
 
-  const findValidKeys = (obj: ActiveFilter) =>
+  const findValidKeys = (obj: ActiveFilterType) =>
     Object.entries(obj)
       .filter(([_, val]) => {
         if (Array.isArray(val)) return val.length > 0;
